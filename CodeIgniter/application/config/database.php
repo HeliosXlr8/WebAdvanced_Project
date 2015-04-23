@@ -65,7 +65,7 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> 'mysql:host=heliosxlr8.be;dbname=CodeIgniterDb',
 	'hostname' => 'heliosxlr8.be',
-	'username' => 'developer',
+	'username' => 'webdeveloper',
 	'password' => 'Gains4life',
 	'database' => '',
 	'dbdriver' => 'pdo',
