@@ -20,6 +20,9 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$data['title'] = 'TEDxPXL';
+		$data['page_header'] = 'Welcome to TEDxPXL';
+		$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+		$this->load->view('welcome_message', $data);
 	}
 }
