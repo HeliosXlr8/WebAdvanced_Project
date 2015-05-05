@@ -63,10 +63,10 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=heliosxlr8.be;dbname=CodeIgniterDb',
-	'hostname' => 'heliosxlr8.be',
-	'username' => 'webdeveloper',
-	'password' => 'Gains4life',
+	'dsn'	=> 'mysql:host=localhost;dbname=CodeIgniterDb',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
