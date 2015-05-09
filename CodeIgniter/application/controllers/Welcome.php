@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
-
+class Welcome extends CI_Controller
+{
 	/**
 	 * Index Page for this controller.
 	 *
@@ -23,8 +23,14 @@ class Welcome extends CI_Controller {
 		$data['title'] = 'TEDxPXL';
 		$data['page_header'] = 'Welcome to TEDxPXL';
 		$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+		
 		$this->load->view('welcome_message.php', $data);
 		$this->load->view('menubar.html', $data);
 		$this->load->view('debug_info.php', $data);
+	}
+
+	public function algemene_info()
+	{
+		$this->load->view('algemene_info.php', $data);
 	}
 }
