@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/WebAdvanced_Project/CodeIgniter/';
+$config['base_url'] = 'http://localhost/WebAdvanced_Project/';
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ $config['base_url'] = 'http://localhost/WebAdvanced_Project/CodeIgniter/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = 'index.php'; // default: index.php
 
 /*
 |--------------------------------------------------------------------------
