@@ -19,29 +19,48 @@
 		 * @see http://codeigniter.com/user_guide/general/urls.html
 		 */
 		
+		private $data;
+
+		public function load_elements()
+		{
+			$data['menubar'] = $this->load->view('menubar.html', NULL, TRUE);
+
+			return true;
+		}
+
 		public function index()
 		{
+			while ($this->load_elements() != true){}
 			$this->welcome();
 		}
 
 		public function welcome()
 		{
+			while ($this->load_elements() != true){} // er wordt hier blijkbaar nog niks geladen.. ik snap er niks van
+			Site::load_elements(); // werkt ook niet
+			//load_elements() // werkt ook niet
+
+			// [tijdelijke oplossing] //
+			$data['menubar'] = $this->load->view('menubar.html', NULL, TRUE);
+			// [tijdelijke oplossing] //
+
 			$data['title'] = 'TEDxPXL';
 			$data['page_header'] = 'Welcome to TEDxPXL';
 			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
 			$this->load->view('welcome_message.php', $data);
-			$this->load->view('menubar.html', $data);
 			$this->load->view('debug_info.php', $data);
 		}
 
 		public function algemene_info()
 		{
+			// [tijdelijke oplossing] //
+			$data['menubar'] = $this->load->view('menubar.html', NULL, TRUE);
+			// [tijdelijke oplossing] //
+
 			$data['title'] = 'TEDxPXL';
 			$data['page_header'] = 'Algemene info';
 
-			$this->load->view('hoofdpunt.php', $data);
-			$this->load->view('menubar.html', $data);
 			$this->load->view('algemene_info.php', $data);
 			$this->load->view('debug_info.php', $data);
 		}
