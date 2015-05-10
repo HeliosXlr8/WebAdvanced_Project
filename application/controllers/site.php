@@ -19,50 +19,46 @@
 		 * @see http://codeigniter.com/user_guide/general/urls.html
 		 */
 		
-		private $data;
-
-		public function load_elements()
-		{
-			$data['menubar'] = $this->load->view('menubar.html', NULL, TRUE);
-
-			return true;
-		}
-
+		public function loadStaticData() {
+			$data['navigation'] = array('first' => 'site', 'second' => 'site/algemene_info');
+			$data['title'] = 'TEDxPXL';
+			return $data;
+		}	
+		
 		public function index()
 		{
-			while ($this->load_elements() != true){}
-			$this->welcome();
+			$data = $this->loadStaticData();			
+			$data['page_header'] = 'Welcome to TEDxPXL';
+			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+			
+			
+			$data['text'] = 'this is the homepage';
+			
+			$this->load->view('head.php', $data);
+			$this->load->view('header.php');
+			$this->load->view('menubar.php');
+			$this->load->view('welcome_message.php');
+			$this->load->view('footer.php');
 		}
 
 		public function welcome()
 		{
-			while ($this->load_elements() != true){} // er wordt hier blijkbaar nog niks geladen.. ik snap er niks van
-			Site::load_elements(); // werkt ook niet
-			//load_elements() // werkt ook niet
 
-			// [tijdelijke oplossing] //
-			$data['menubar'] = $this->load->view('menubar.html', NULL, TRUE);
-			// [tijdelijke oplossing] //
-
-			$data['title'] = 'TEDxPXL';
-			$data['page_header'] = 'Welcome to TEDxPXL';
-			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
-			
-			$this->load->view('welcome_message.php', $data);
-			$this->load->view('debug_info.php', $data);
 		}
 
 		public function algemene_info()
 		{
-			// [tijdelijke oplossing] //
-			$data['menubar'] = $this->load->view('menubar.html', NULL, TRUE);
-			// [tijdelijke oplossing] //
-
-			$data['title'] = 'TEDxPXL';
+			$data = $this->loadStaticData();
 			$data['page_header'] = 'Algemene info';
-
-			$this->load->view('algemene_info.php', $data);
-			$this->load->view('debug_info.php', $data);
+			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+			
+			$data['text'] = 'een pagina waar algemene info wordt getoond over de vereniging, een link naar hoe je lid kan worden bij de vereniging, voordelen die leden genieten,...';
+			
+			$this->load->view('head.php', $data);
+			$this->load->view('header.php');
+			$this->load->view('menubar.php');
+			$this->load->view('welcome_message.php');
+			$this->load->view('footer.php');
 		}
 	}
 ?>
