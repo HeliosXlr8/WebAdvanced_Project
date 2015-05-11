@@ -20,7 +20,11 @@
 		 */
 		
 		public function loadStaticData() {
-			$data['navigation'] = array('first' => 'site', 'second' => 'site/algemene_info');
+			$data['navigation'] = array(
+				'first' => 'site',
+				'second' => 'site/algemene_info',
+				'third' => 'site/login'
+				);
 			$data['title'] = 'TEDxPXL';
 			return $data;
 		}	
@@ -37,13 +41,8 @@
 			$this->load->view('head.php', $data);
 			$this->load->view('header.php');
 			$this->load->view('menubar.php');
-			$this->load->view('welcome_message.php');
+			$this->load->view('page.php');
 			$this->load->view('footer.php');
-		}
-
-		public function welcome()
-		{
-
 		}
 
 		public function algemene_info()
@@ -57,8 +56,92 @@
 			$this->load->view('head.php', $data);
 			$this->load->view('header.php');
 			$this->load->view('menubar.php');
-			$this->load->view('welcome_message.php');
+			$this->load->view('page.php');
 			$this->load->view('footer.php');
+		}
+
+		public function login() {
+			$data = $this->loadStaticData();
+			$data['page_header'] = 'Login';
+			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+			
+			$this->load->view('head.php', $data);
+			$this->load->view('header.php');
+			$this->load->view('menubar.php');
+			$this->load->view('login.php');
+			$this->load->view('footer.php');
+		}
+
+		public function members() {
+			
+			if ($this->session->userdata('is_logged_in')) {
+				
+				$data = $this->loadStaticData();
+				$data['page_header'] = 'Members area';
+				$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+				
+				$data['text'] = 'This is a members only page: ';
+				
+				$this->load->view('head.php', $data);
+				$this->load->view('header.php');
+				$this->load->view('menubar.php');
+				$this->load->view('members_page.php');
+				$this->load->view('footer.php');
+				
+			}
+			else {
+				redirect('site/restricted');
+			}	
+		}
+
+		public function restricted() {
+			$data = $this->loadStaticData();
+			$data['page_header'] = 'Restricted';
+			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+			
+			$data['text'] = 'Acess denied!';
+			
+			$this->load->view('head.php', $data);
+			$this->load->view('header.php');
+			$this->load->view('menubar.php');
+			$this->load->view('page.php');
+			$this->load->view('footer.php');
+		}
+
+		public function login_validation() {
+			$this->load->library('form_validation');
+			$this->form_validation->set_error_delimiters('<div class="alert alert-dismissible alert-warning">', '</div>');
+			
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|callback_validate_credentials');
+			$this->form_validation->set_rules('password', 'Password', 'required|md5|trim');
+			
+			if ($this->form_validation->run()) {
+				$data = array(
+					'email' => $this->input->post('email'),
+					'is_logged_in' => 1
+				);
+				$this->session->set_userdata($data);
+				redirect('site/members');
+			}
+			else {
+				$this->login();
+			}			
+		}
+		
+		public function validate_credentials() {
+			$this->load->model('model_users');
+			if ($this->model_users->can_log_in()) {
+				return true;	
+			}
+			else {
+				$this->form_validation->set_message('validate_credentials', 'Incorrect username or password.');
+				return false;
+			}
+		}
+		
+		public function logout() {
+			$this->session->sess_destroy();
+			redirect('site/login');
 		}
 	}
 ?>

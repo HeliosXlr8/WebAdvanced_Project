@@ -13,6 +13,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="<?php echo site_url($navigation['first']) ?>">Home</a></li>
 				<li><a href="<?php echo site_url($navigation['second']) ?>">Info</a></li>
+				<li><a href="<?php echo site_url($navigation['third']) ?>">Login</a></li>
 				<li><a href="#">Contact</a></li>
 				<li><a href="#">About</a></li>
 				<li class="dropdown">
