@@ -17,21 +17,11 @@
 		 * So any other public methods not prefixed with an underscore will
 		 * map to /index.php/welcome/<method_name>
 		 * @see http://codeigniter.com/user_guide/general/urls.html
-		 */
-		
-		public function loadStaticData() {
-			$data['navigation'] = array(
-				'first' => 'site',
-				'second' => 'site/algemene_info',
-				'third' => 'site/login'
-				);
-			$data['title'] = 'TEDxPXL';
-			return $data;
-		}	
+		 */	
 		
 		public function index()
 		{
-			$data = $this->loadStaticData();			
+			$data = $this->model_staticdata->getData();		
 			$data['page_header'] = 'Welcome to TEDxPXL';
 			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
@@ -47,7 +37,7 @@
 
 		public function algemene_info()
 		{
-			$data = $this->loadStaticData();
+			$data = $this->model_staticdata->getData();	
 			$data['page_header'] = 'Algemene info';
 			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
@@ -61,7 +51,7 @@
 		}
 
 		public function login() {
-			$data = $this->loadStaticData();
+			$data = $this->model_staticdata->getData();	
 			$data['page_header'] = 'Login';
 			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
@@ -76,7 +66,7 @@
 			
 			if ($this->session->userdata('is_logged_in')) {
 				
-				$data = $this->loadStaticData();
+				$data = $this->model_staticdata->getData();	
 				$data['page_header'] = 'Members area';
 				$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 				
@@ -95,7 +85,7 @@
 		}
 
 		public function restricted() {
-			$data = $this->loadStaticData();
+			$data = $this->model_staticdata->getData();	
 			$data['page_header'] = 'Restricted';
 			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			

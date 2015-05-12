@@ -1,4 +1,3 @@
-<!-- Static navbar -->
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -11,24 +10,31 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="<?php echo site_url($navigation['first']) ?>">Home</a></li>
-				<li><a href="<?php echo site_url($navigation['second']) ?>">Info</a></li>
-				<li><a href="<?php echo site_url($navigation['third']) ?>">Login</a></li>
-				<li><a href="#">Contact</a></li>
-				<li><a href="#">About</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
+				<?php
+					foreach ($navigation as $key => $value) {
+						echo '<li><a href="' . site_url($value) . '">' . $key . '</a></li>';
+					}
+				?>
 				</li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<?php
+	        		if (count($loginnav) > 1) {
+						echo '<li class="dropdown navbar-right">';
+						echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' . $identity . '<span class="caret"></span></a>';
+						echo '<ul class="dropdown-menu" role="menu">';
+						foreach ($loginnav as $key => $value) {
+							echo '<li><a href="' . site_url($value) . '">' . $key . '</a></li>';
+						}
+						echo '</ul>';
+					}
+					else {
+						foreach ($loginnav as $key => $value) {
+							echo '<li><a href="' . site_url($value) . '">' . $key . '</a></li>';
+						}
+					}
+				?>
+      		</ul>
 		</div>
 	</div>
 </nav>
