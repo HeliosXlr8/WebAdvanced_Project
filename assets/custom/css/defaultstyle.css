@@ -2,9 +2,29 @@
 {
 	border-collapse: collapse;
 	border: 2px solid black;
+	margin-bottom: 10px;
 }
 
 .event_manager td
 {
 	border: 1px solid black;
+	width: 3em;
+	height: 2.5em;
+	text-align: center;
+}
+
+.event_manager tr:first-child
+{
+	text-align: center;
+	font-weight: bold;
+}
+
+.event_manager .weekname
+{
+	height: 2em;
+}
+
+.event_manager .daymarked
+{
+	background-color: lime;
 }

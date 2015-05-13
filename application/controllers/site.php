@@ -57,7 +57,7 @@
 			$data['page_header'] = 'Welcome to TEDxPXL';
 			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
-			$data['text'] = '\^/_Da Eventmanager_\^/';
+			$data['text'] = 'Event manager';
 			
 			$this->load->view('head.php', $data);
 			$this->load->view('header.php');
