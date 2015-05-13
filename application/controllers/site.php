@@ -25,7 +25,6 @@
 			$data['page_header'] = 'Welcome to TEDxPXL';
 			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
-			
 			$data['text'] = 'this is the homepage';
 			
 			$this->load->view('head.php', $data);
@@ -47,6 +46,24 @@
 			$this->load->view('header.php');
 			$this->load->view('menubar.php');
 			$this->load->view('page.php');
+			$this->load->view('footer.php');
+		}
+
+		public function event_manager()
+		{
+			$this->load->model('model_events');
+			$data = $this->model_staticdata->getData();
+			$data['edata'] = $this->model_events->getData();
+			$data['page_header'] = 'Welcome to TEDxPXL';
+			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+			
+			$data['text'] = '\^/_Da Eventmanager_\^/';
+			
+			$this->load->view('head.php', $data);
+			$this->load->view('header.php');
+			$this->load->view('menubar.php');
+			$this->load->view('page.php');
+			$this->load->view('event_manager.php');
 			$this->load->view('footer.php');
 		}
 

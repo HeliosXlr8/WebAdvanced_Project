@@ -1,0 +1,10 @@
+.event_manager table
+{
+	border-collapse: collapse;
+	border: 2px solid black;
+}
+
+.event_manager td
+{
+	border: 1px solid black;
+}
