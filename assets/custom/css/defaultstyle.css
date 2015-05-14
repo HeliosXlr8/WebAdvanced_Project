@@ -2,7 +2,14 @@
 {
 	border-collapse: collapse;
 	border: 2px solid black;
-	margin-bottom: 10px;
+	margin-bottom: 14px;
+	cursor: hand;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .event_manager td
@@ -13,18 +20,33 @@
 	text-align: center;
 }
 
-.event_manager tr:first-child
+.event_manager .calendarTitle
 {
 	text-align: center;
 	font-weight: bold;
+	border-left: none;
+	border-right: none;
+}
+
+.event_manager .calendarArrow
+{
+	font-weight: bold;
+	border: none;
 }
 
 .event_manager .weekname
 {
-	height: 2em;
+	height: 1.5em;
 }
 
 .event_manager .daymarked
 {
 	background-color: lime;
+	font-weight: bolder;
+}
+
+.event_manager .today
+{
+	border: 3px solid red;
+	font-weight: bolder;
 }
