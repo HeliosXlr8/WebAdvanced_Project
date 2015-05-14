@@ -2,7 +2,6 @@
 	<?php
 		function build($data)
 		{
-			$days = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
 			$daynames = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
 			$monthnames = array('January', 'February', 'March', 'April', 'May', 
 				'June', 'July', 'August', 'September', 'October', 'November', 
@@ -14,10 +13,14 @@
 			$year = $yearNow;
 			$month = 0;
 
+			echo "<table>";
+			echo "<tr>";
+			echo "<td class='calendar'>";
 			for ($h=0; $h<12; $h++)
 			{
 				$month++;
 				$monthdate = strtotime("1-".$month."-".$year);
+				$days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 				$firstday = date('N', $monthdate);
 
 				if ($month == $monthNow)
@@ -40,7 +43,7 @@
 
 				$day = 1;
 				$firstdaysDone = false;
-				for ($i=0; $i<($firstday>5 ? 6 : 5); $i++)
+				for ($i=0; $i<($firstday+$days>36 ? 6 : 5); $i++)
 				{
 					$cellsDone = 0;
 					echo "<tr>";
@@ -68,10 +71,10 @@
 								{
 									if (date('m') == $month && date('d') == $day)
 									{
-										echo "<td class='daymarked today' id=day".$day.">".$day."</td>";
+										echo "<td class='day daymarked today'>".$day."</td>";
 									}
 									else
-										echo "<td class='daymarked' id=day".$day.">".$day."</td>";
+										echo "<td class='day daymarked'>".$day."</td>";
 									
 									$daymarked = true;
 									$markedday = $day;
@@ -81,10 +84,10 @@
 							if (date('m') == $month && date('d') == $day)
 							{
 								if ($daymarked == false)
-									echo "<td class='today' id=day".$day.">".$day."</td>";
+									echo "<td class='day today'>".$day."</td>";
 							}
 							else if ($daymarked == false)
-								echo "<td id=day".$day.">".$day."</td>";
+								echo "<td class='day'>".$day."</td>";
 
 							$day++;
 						}
@@ -97,13 +100,101 @@
 				}
 				echo "</table>";
 			}
+			echo "</td>";
+			
+			echo "<td class='event_summary'>";
+			echo "<table>";
+			echo "<tr>";
+			echo "<td class='event_summary_title'>summary</td>";
+			echo "</tr>";
+			echo "<tr>";
+
+			echo "<td class='event_summary_desc'>";
+			echo "nothing special";
+			echo "</td>";
+
+			echo "</tr>";
+			echo "</table>";
+			echo "</td>";	
+			echo "</tr>";
+			echo "</table>";
 		}
 
 		build($edata);
 	?>
 
 	<script>
-		var month = <?php echo (int)date('m') ?>;
+		data = <?php echo json_encode($edata) ?>;
+		month = <?php echo (int)date('m') ?>;
+		day = <?php echo (int)date('d') ?>;
+
+		calendar = undefined;
+		calDays = undefined;
+		dates = [];
+		summary_titles = document.getElementsByClassName("event_summary_title");
+		summary_descs = document.getElementsByClassName("event_summary_desc");
+		
+		update_event_title(day, month);
+		fill_dates();
+		bind_days();
+		
+		function fill_dates()
+		{
+			for (var j=0; j<data.length; j++)
+			{
+				dates[j] = new Date(data[j].date);
+			}
+		}
+
+		function bind_days()
+		{
+			calendar = document.getElementById("month"+month);
+			calDays = calendar.getElementsByClassName("day");
+			
+			for (var i=0; i<calDays.length; i++)
+			{
+				calDays[i].name = i+1;
+				calDays[i].addEventListener("click", 
+					function(){dayListener(this.name, month)});
+			}
+		}
+
+		function dayListener(day, month)
+		{
+			update_event_title(day, month);
+			update_event_desc(day, month);
+		}
+
+		function update_event_desc(day, month)
+		{
+			for (var i=0; i<summary_descs.length; i++)
+			{
+				var summary = summary_descs[i];
+				summary.innerHTML = "nothing special";
+				
+				for (var j=0; j<data.length; j++)
+				{
+					if (month==dates[j].getMonth()+1 &&
+						day==dates[j].getDate())
+					{
+						var desc = "name: "+data[j].name+"<br />"
+							+"time: "+getReadableTime(dates[j])+"<br />"
+							+"description: "+data[j].description+"<br />"
+							+"location: "+data[j].location;
+						
+						summary.innerHTML = desc;
+					}
+				}
+			}
+		}
+
+		function update_event_title(day, month)
+		{
+			for (var i=0; i<summary_titles.length; i++)
+			{
+				summary_titles[i].innerHTML = "events for "+day+"/"+month;
+			}
+		}
 
 		function prevMonth()
 		{
@@ -112,6 +203,8 @@
 				document.getElementById("month"+month).style.display="none";
 				document.getElementById("month"+(month-=1)).style.display="block";
 			}
+			
+			bind_days();
 		}
 
 		function nextMonth()
@@ -121,6 +214,16 @@
 				document.getElementById("month"+month).style.display="none";
 				document.getElementById("month"+(month+=1)).style.display="block";
 			}
+			
+			bind_days();
+		}
+
+		function getReadableTime(date)
+		{
+			var hours = date.getHours();
+			var minutes = (date.getMinutes()<10?'0':'') + date.getMinutes();
+
+			return hours+":"+minutes;
 		}
 	</script>
 </div>
