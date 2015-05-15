@@ -183,8 +183,8 @@
 						var desc = "<ul class='desc_list'>"
 							+"<li><span class='param'>name: </span>"+data[j].name+"</li>"
 							+"<li><span class='param'>time: </span>"+getReadableTime(dates[j])+"</li>"
-							+"<li><span class='param'>description: </span>"+data[j].description+"</li>"
-							+"<li><span class='param'>location: </span>"+data[j].location+"</li>"
+							+"<li><span class='param'>description: </span>"+filterOnNull(data[j].description)+"</li>"
+							+"<li><span class='param'>location: </span>"+filterOnNull(data[j].location)+"</li>"
 							+"</ul>";
 						
 						buffer += desc;
@@ -194,6 +194,13 @@
 				if (buffer.length > 0)
 					summary.innerHTML = buffer;
 			}
+		}
+
+		function filterOnNull(str)
+		{
+			if (str != null)
+				return str;
+			return "not specified";
 		}
 
 		function update_event_title(day, month)
