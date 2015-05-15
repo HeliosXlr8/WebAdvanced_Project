@@ -1,6 +1,12 @@
 .event_manager
 {
-	margin-bottom: 14px;
+	margin-bottom: 10px;
+	/*zoom: 125%;*/
+}
+
+.event_manager *
+{
+	font-size: 12pt;
 }
 
 .calendar table
@@ -92,6 +98,7 @@
 
 .event_summary_desc_div
 {
+	font-size: 10pt;
 	padding: 7px;
 	max-height: 13em;
 }
@@ -101,6 +108,11 @@
 	margin-left: 0;
 	padding-left: 16px;
 	list-style-type: square;
+}
+
+.desc_list *
+{
+	font-size: 10pt;
 }
 
 .param
