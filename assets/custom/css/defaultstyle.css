@@ -86,7 +86,24 @@
 
 .event_summary_desc
 {
-	display: block;
-	padding: 7px;
 	vertical-align: top;
+	overflow-y: scroll;
+}
+
+.event_summary_desc_div
+{
+	padding: 7px;
+	max-height: 13em;
+}
+
+.desc_list
+{
+	margin-left: 0;
+	padding-left: 16px;
+	list-style-type: square;
+}
+
+.param
+{
+	font-weight: bold;
 }

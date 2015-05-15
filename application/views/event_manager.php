@@ -110,7 +110,9 @@
 			echo "<tr>";
 
 			echo "<td class='event_summary_desc'>";
+			echo "<div class='event_summary_desc_div'>";
 			echo "nothing special";
+			echo "</div>";
 			echo "</td>";
 
 			echo "</tr>";
@@ -132,7 +134,7 @@
 		calDays = undefined;
 		dates = [];
 		summary_titles = document.getElementsByClassName("event_summary_title");
-		summary_descs = document.getElementsByClassName("event_summary_desc");
+		summary_descs = document.getElementsByClassName("event_summary_desc_div");
 		
 		update_event_title(day, month);
 		fill_dates();
@@ -170,6 +172,7 @@
 			for (var i=0; i<summary_descs.length; i++)
 			{
 				var summary = summary_descs[i];
+				var buffer = "";
 				summary.innerHTML = "nothing special";
 				
 				for (var j=0; j<data.length; j++)
@@ -177,14 +180,19 @@
 					if (month==dates[j].getMonth()+1 &&
 						day==dates[j].getDate())
 					{
-						var desc = "name: "+data[j].name+"<br />"
-							+"time: "+getReadableTime(dates[j])+"<br />"
-							+"description: "+data[j].description+"<br />"
-							+"location: "+data[j].location;
+						var desc = "<ul class='desc_list'>"
+							+"<li><span class='param'>name: </span>"+data[j].name+"</li>"
+							+"<li><span class='param'>time: </span>"+getReadableTime(dates[j])+"</li>"
+							+"<li><span class='param'>description: </span>"+data[j].description+"</li>"
+							+"<li><span class='param'>location: </span>"+data[j].location+"</li>"
+							+"</ul>";
 						
-						summary.innerHTML = desc;
+						buffer += desc;
 					}
 				}
+
+				if (buffer.length > 0)
+					summary.innerHTML = buffer;
 			}
 		}
 
