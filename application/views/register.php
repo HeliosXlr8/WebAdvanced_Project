@@ -2,7 +2,7 @@
 	<div class="col-sm-6">
 		<?php
 			$data = array('class' => 'form-horizontal');
-			echo form_open('site/login_validation', $data);
+			echo form_open('site/register_validation', $data);
 			
 			$data = array('class' => 'form-control', 'name' => 'email', 'placeholder' => 'Email', 'value' => set_value('email'));
 			echo "<p>";
@@ -14,12 +14,14 @@
 			echo form_password($data);
 			echo "</p>";
 			
-			$data = array('class' => 'btn btn-default', 'name' => 'login_submit', 'value' => 'Login');
+			$data = array('class' => 'form-control', 'name' => 'cpassword', 'placeholder' => 'Confirm password');
+			echo "<p>";
+			echo form_password($data);
+			echo "</p>";
+			
+			$data = array('class' => 'btn btn-default', 'name' => 'register_submit', 'value' => 'Sign up!');
 			echo "<p>";
 			echo form_submit($data);
-		?>
-			<a href="<?php echo base_url()."index.php/site/register"?>" class="btn btn-primary">Sign up!</a>
-		<?php
 			echo "</p>";
 			
 			echo form_close();

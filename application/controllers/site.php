@@ -22,8 +22,7 @@
 		public function index()
 		{
 			$data = $this->model_staticdata->getData();		
-			$data['page_header'] = 'Welcome to TEDxPXL';
-			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+			$data['page_header'] = 'Home';
 			
 			$data['text'] = 'this is the homepage';
 			
@@ -38,7 +37,6 @@
 		{
 			$data = $this->model_staticdata->getData();	
 			$data['page_header'] = 'Algemene info';
-			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
 			$data['text'] = 'een pagina waar algemene info wordt getoond over de vereniging, een link naar hoe je lid kan worden bij de vereniging, voordelen die leden genieten,...';
 			
@@ -54,8 +52,7 @@
 			$this->load->model('model_events');
 			$data = $this->model_staticdata->getData();
 			$data['edata'] = $this->model_events->getData();
-			$data['page_header'] = 'Welcome to TEDxPXL';
-			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
+			$data['page_header'] = 'Events';
 			
 			$data['text'] = 'Event manager';
 			
@@ -70,7 +67,6 @@
 		public function login() {
 			$data = $this->model_staticdata->getData();	
 			$data['page_header'] = 'Login';
-			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
 			$this->load->view('head.php', $data);
 			$this->load->view('header.php');
@@ -85,7 +81,6 @@
 				
 				$data = $this->model_staticdata->getData();	
 				$data['page_header'] = 'Members area';
-				$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 				
 				$data['text'] = 'This is a members only page: ';
 				
@@ -104,7 +99,6 @@
 		public function restricted() {
 			$data = $this->model_staticdata->getData();	
 			$data['page_header'] = 'Restricted';
-			$data['message'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
 			$data['text'] = 'Acess denied!';
 			
@@ -149,6 +143,71 @@
 		public function logout() {
 			$this->session->sess_destroy();
 			redirect('site/login');
+		}
+		
+		public function register() {
+			$data = $this->model_staticdata->getData();	
+			$data['page_header'] = 'Register';
+			
+			$this->load->view('head.php', $data);
+			$this->load->view('header.php');
+			$this->load->view('menubar.php');
+			$this->load->view('register.php');
+			$this->load->view('footer.php');
+		}
+		
+		public function register_validation() {
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_error_delimiters('<div class="alert alert-dismissible alert-warning">', '</div>');
+			
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]');
+			$this->form_validation->set_rules('password', 'Password', 'required|md5|trim|min_length[6]');
+			$this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|md5|trim|matches[password]');
+			
+			$this->form_validation->set_message('is_unique', 'This email address has already been used.');
+			
+			if ($this->form_validation->run()) {
+					
+				$key = md5(uniqid());
+				
+				$message = "<p>Thank you for signing up!</p>";
+				$message .= "<p><a href='" . base_url() . "site/register_user/$key'>Click here</a> to confirm your account.</p>";
+				
+				//confirm account, dit wordt normaal gedaan via mail, maar omdat dit een lokaal project is doen we het even via een simpele echo
+				$this->load->model('model_users');
+				if ($this->model_users->add_temp_user($key)) {
+					echo $message;
+				}
+				else {
+					echo "Problem when adding to the database";
+				}
+
+			}
+			else {
+				$this->register();
+			}
+		}
+
+		public function register_user($key) {
+			$this->load->model('model_users');
+			if ($this->model_users->is_key_valid($key)) {
+				if ($newemail = $this->model_users->add_user($key)) {
+					echo "Confirmation completed!";
+					$data = array(
+						'email' => $newemail,
+						'is_logged_in' => 1
+					);
+					$this->session->set_userdata($data);
+					redirect('site/members');
+				}
+				else {
+					echo "Failed to add user";
+				}
+			}
+			else {
+				echo "Wrong key";
+			}			
 		}
 	}
 ?>

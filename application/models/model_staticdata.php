@@ -24,6 +24,8 @@
 			}
 						
 			$data['title'] = 'TEDxPXL';
+			$data['site_header'] = 'Welcome to TEDxPXL';
+			$data['motd'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			return $data;
 			
 		}
