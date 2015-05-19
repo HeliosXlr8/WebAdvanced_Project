@@ -68,5 +68,54 @@
 
 		}
 		
+		public function getCurentUserInfo() {
+			$email = $this->session->userdata('email');
+			$this->db->where('email', $email);
+			$query = $this->db->get('users');
+			if ($query->num_rows() == 1) {
+				$row = $query->row();
+				$data = array(
+					'email' => $row->email,
+					'nickname' => $row->nickname,
+					'role' => $row->role
+				);
+				return $data;
+			}
+			else {
+				return false;
+			}
+		}
+		
+		public function updateUser() {
+			$nickname = $this->input->post('nickname');
+			$password = $this->input->post('newpassword');
+			$data = array();
+			if ($nickname =='') {
+				$data = array(
+				'password' => $password
+				);
+			}
+			elseif ($password == '') {
+				$data = array(
+				'nickname' => $nickname
+				);
+			}
+			elseif (condition) {
+				$data = array(
+				'password' => $password,
+				'nickname' => $nickname
+				);
+			}
+			$this->db->where('email', $this->input->post('email'));
+			$query = $this->db->update('users', $data);
+			if ($query) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		
+		
 	}
 ?>

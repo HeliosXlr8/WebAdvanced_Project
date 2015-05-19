@@ -23,6 +23,10 @@
 						echo '<li class="dropdown navbar-right">';
 						echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' . $identity . '<span class="caret"></span></a>';
 						echo '<ul class="dropdown-menu" role="menu">';
+						foreach ($adminnav as $key => $value) {
+							echo '<li><a href="' . site_url($value) . '">' . $key . '</a></li>';
+						}
+						echo '<li class="divider"></li>';
 						foreach ($loginnav as $key => $value) {
 							echo '<li><a href="' . site_url($value) . '">' . $key . '</a></li>';
 						}

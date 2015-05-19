@@ -11,9 +11,17 @@
 				'Empty3' => '#'
 			);
 			if ($this->session->userdata('is_logged_in')) {
+				if ($this->session->userdata('role') == trim('admin')){
+					$data['adminnav'] = array(
+						'Members' => 'site/members'
+					);
+				}
+				else {
+					$data['adminnav'] = array();
+				}
 				$data['identity'] = $this->session->userdata('email');
 				$data['loginnav'] = array (
-					'Empty' => 'site/logout',
+					'Profile' => 'site/profile/user',
 					'Logout' => 'site/logout'
 				);
 			}
