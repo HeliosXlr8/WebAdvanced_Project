@@ -139,6 +139,7 @@
 		update_event_title(day, month);
 		fill_dates();
 		bind_days();
+		update_event_desc(day, month);
 		
 		function fill_dates()
 		{
