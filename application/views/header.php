@@ -1,4 +1,6 @@
 <div class="jumbotron">
-	<h1><?php echo $site_header ?></h1>
-	<p><?php echo $motd ?></p> 
+	<img class="header_logo" 
+		src=<?php echo base_url()."assets/images/TEDx__PXL_logo_compressed.png"?> 
+		alt="logo">
+	</img>
 </div>

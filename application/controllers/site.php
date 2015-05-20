@@ -27,7 +27,7 @@
 			$data['text'] = 'this is the homepage';
 			
 			$this->load->view('head.php', $data);
-			$this->load->view('header.php');
+			$this->load->view('header_welcome.php');
 			$this->load->view('menubar.php');
 			$this->load->view('page.php');
 			$this->load->view('footer.php');
