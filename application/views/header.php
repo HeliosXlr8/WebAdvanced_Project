@@ -1,6 +1,8 @@
-<div class="jumbotron">
-	<img class="header_logo" 
-		src=<?php echo base_url()."assets/images/TEDx__PXL_logo_compressed.png"?> 
-		alt="logo">
-	</img>
+<div class="jumbotron row">
+	<div class="col-lg-6 col-md-8">
+		<img class="header_logo" 
+			src=<?php echo base_url()."assets/images/TEDx__PXL_logo_compressed.png"?> 
+			alt="logo">
+		</img>
+	</div>	
 </div>

@@ -22,12 +22,12 @@
 		public function index()
 		{
 			$data = $this->model_staticdata->getData();		
-			$data['page_header'] = 'Home';
+			$data['page_header'] = 'Welcome to TEDxPXL';
 			
-			$data['text'] = 'this is the homepage';
+			$data['text'] = 'TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.';
 			
 			$this->load->view('head.php', $data);
-			$this->load->view('header_welcome.php');
+			$this->load->view('header.php');
 			$this->load->view('menubar.php');
 			$this->load->view('page.php');
 			$this->load->view('footer.php');
