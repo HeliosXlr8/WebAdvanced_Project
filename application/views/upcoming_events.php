@@ -1,10 +1,22 @@
 <div class="upcoming_events">
 	<?php
+		$dates = array();
 		for ($i=0; $i<count($edata); $i++)
 		{
+			array_push($dates, strtotime($edata[$i]->date));
+		}
+
+		var_dump($dates);
+		//$keys = array_keys(asort($dates));
+		asort($dates);
+		var_dump($dates);
+
+		for ($i=0; $i<count($dates); $i++)
+		{
+			$date = $dates[$i];
+
 			echo "<p class='upcoming_events_title'>".$edata[$i]->name."</p>";
 			echo "<table><tr>";
-			$date = strtotime($edata[$i]->date);
 			echo "<td>".date('d-m-Y', $date)."<br/>".date('H:i', $date)."</td>";
 			echo "<td>".$edata[$i]->description."</td>";
 			echo "</tr></table>";
