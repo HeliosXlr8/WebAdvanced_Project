@@ -64,18 +64,24 @@
 		}
 
 		public function members() {
-			$data = $this->model_staticdata->getData();	
-			$this->load->model('model_users');
-			$data['all_users'] = $this->model_users->getAllUsers();
+			if ($this->session->userdata('is_logged_in') && $this->session->userdata('role') == trim('admin')) {
+				$data = $this->model_staticdata->getData();	
+				$this->load->model('model_users');
+				$data['all_users'] = $this->model_users->getAllUsers();
+				
+				$data['page_header'] = 'All users';			
+				$data['text'] = 'You can select a user and edit it\'s information';
+				
+				$this->load->view('head.php', $data);
+				$this->load->view('header.php');
+				$this->load->view('menubar.php');
+				$this->load->view('members.php');
+				$this->load->view('footer.php');
+			}
+			else {
+				redirect('user/restricted');
+			}
 			
-			$data['page_header'] = 'All users';			
-			$data['text'] = 'You can select a user and edit it\'s information';
-			
-			$this->load->view('head.php', $data);
-			$this->load->view('header.php');
-			$this->load->view('menubar.php');
-			$this->load->view('members.php');
-			$this->load->view('footer.php');
 		}
 
 		public function restricted() {

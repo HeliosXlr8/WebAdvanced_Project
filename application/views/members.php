@@ -21,7 +21,7 @@
 				foreach ($all_users as $user)
 				{
 					$count += 1;
-					echo '<tr>';
+					echo '<tr onclick="document.location = \'member/id\';">';
 						echo '<td>';
 				  			echo $count;
 						echo '</td>';

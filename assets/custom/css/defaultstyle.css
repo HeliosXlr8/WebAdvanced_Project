@@ -238,3 +238,7 @@
 	-webkit-transform: translateY(40px);
 	transform: translateY(40px);
 }
+
+.table tr {
+	cursor: pointer;
+}
