@@ -5,7 +5,7 @@
 			echo "<p>" . $text . "</p>";
 		
 			$data = array('class' => 'form-horizontal');
-			echo form_open('site/update_profile', $data);
+			echo form_open('user/update_profile', $data);
 			
 			echo "<input type=\"hidden\" name=\"email\" value=\"" . $userInfo['email'] . "\" />";
 			

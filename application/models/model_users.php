@@ -118,9 +118,26 @@
 		
 		public function getAllUsers() {
 			//$query = $this->db->get('users');
-			$query = $this->db->query('SELECT nickname, email, role FROM users');
+			$query = $this->db->query('SELECT id, nickname, email, role FROM users');
 
 			return $query->result();
+		}
+		
+		public function getUserById($id) {
+			$this->db->where('id', $id);
+			$query = $this->db->query('SELECT id, nickname, email, role FROM users');
+			if ($query->num_rows() == 1) {
+				$row = $query->row();
+				$data = array(
+					'email' => $row->email,
+					'nickname' => $row->nickname,
+					'role' => $row->role
+				);
+				return $data;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 ?>

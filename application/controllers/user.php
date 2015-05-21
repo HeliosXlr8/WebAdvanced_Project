@@ -83,6 +83,34 @@
 			}
 			
 		}
+		
+		public function member($alert, $id) {
+			if ($this->session->userdata('is_logged_in') && $this->session->userdata('role') == trim('admin')) {
+								
+				$data = $this->model_staticdata->getData();	
+				$data['page_header'] = 'Profile';
+				
+				$this->load->model('model_users');
+				$data['userInfo'] = $this->model_users->getUserById($id);
+				
+				$data['text'] = 'You can change your profile information here';
+				if ($alert == 'success') {
+					$data['alert'] = 'Update was a success!';
+				}
+				else {
+					$data['alert'] = '';
+				}
+				$this->load->view('head.php', $data);
+				$this->load->view('header.php');
+				$this->load->view('menubar.php');
+				$this->load->view('profile.php');
+				$this->load->view('footer.php');
+				
+			}
+			else {
+				redirect('user/restricted');
+			}
+		}
 
 		public function restricted() {
 			$data = $this->model_staticdata->getData();	
@@ -165,7 +193,7 @@
 				$key = md5(uniqid());
 				
 				$message = "<p>Thank you for signing up!</p>";
-				$message .= "<p><a href='" . base_url() . "site/register_user/$key'>Click here</a> to confirm your account.</p>";
+				$message .= "<p><a href='" . base_url() . "user/register_user/$key'>Click here</a> to confirm your account.</p>";
 				
 				//confirm account, dit wordt normaal gedaan via mail, maar omdat dit een lokaal project is doen we het even via een simpele echo
 				$this->load->model('model_users');
@@ -222,7 +250,7 @@
 				$this->load->model('model_users');
 				if($this->model_users->updateUser()) {
 					$data['alert'] = 'Update successful!';
-				 	redirect('site/profile/success');
+				 	redirect('user/profile/success');
 				}
 				else {
 					echo "Write to database failed";
