@@ -7,7 +7,7 @@
 				'Home' => 'site',
 				'Info' => 'site/algemene_info',
 				'Events' => 'site/events',
-				'Empty2' => '#',
+				'Forum' => 'forum/forum_overview',
 				'About' => 'site/about'
 			);
 			if ($this->session->userdata('is_logged_in')) {

@@ -288,3 +288,31 @@
 .table tr {
 	cursor: pointer;
 }
+
+
+/*forum styling*/
+#forumTable{
+    border:none;
+    border-collapse: collapse;
+    border-spacing: 2px;
+}
+
+#forumTable th {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    padding-top: 0px;
+}
+
+#forumTable th:first-child {
+    border-left: none;
+}
+
+#forumTable th:last-child {
+    border-right: none;
+}
+
+#rightBtn{
+    float:right;
+    margin-bottom: 5px;
+    margin-left: 2px;
+}

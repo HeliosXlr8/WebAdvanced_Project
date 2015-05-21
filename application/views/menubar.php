@@ -46,4 +46,20 @@
 		</div>
 	</div>
 </nav>
+<?php
+	$crumbs = explode("/", $_SERVER["REQUEST_URI"]);
+	$url = explode("/",$_SERVER["REQUEST_URI"]);
+	$counter = 0;
+	echo '<ul class="breadcrumb">';
+	foreach ($crumbs as $crumb) {
+	    if ($counter != 1) {
+	        echo "<li><a href='#'>";
+	        echo ucfirst(str_replace(array(".php", "_"), array("", " "), $crumb) . ' ');
+	        echo '</a></li>';
+	    }
+	
+	    $counter++;
+	}
+	echo '</ul>';
+?>
 <h2><?php echo $page_header ?></h2>

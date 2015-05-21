@@ -91,9 +91,10 @@
 				$data['page_header'] = 'Profile';
 				
 				$this->load->model('model_users');
-				$data['userInfo'] = $this->model_users->getUserById($id);
+				$user = $this->model_users->getUserById($id);
+				$data['userInfo'] = 
 				
-				$data['text'] = 'You can change your profile information here';
+				$data['text'] = 'Editing user: ' . $data['userInfo'];
 				if ($alert == 'success') {
 					$data['alert'] = 'Update was a success!';
 				}
