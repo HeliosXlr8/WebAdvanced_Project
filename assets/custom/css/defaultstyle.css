@@ -38,17 +38,23 @@
 	font-weight: bold;
 	border-left: none;
 	border-right: none;
+	background-color: #333333;
+	color: white;
 }
 
 .calendar .calendarArrow
 {
 	font-weight: bold;
 	border: none;
+	background-color: #333333;
+	color: white;
 }
 
 .calendar .weekname
 {
 	height: 1.5em;
+	background-color: #707070;
+	color: white;
 }
 
 .calendar .daymarked
@@ -88,6 +94,8 @@
 	height: 2.5em;
 	text-align: center;
 	font-weight: bold;
+	background-color: #333333;
+	color: white;
 }
 
 .event_summary_desc
@@ -123,4 +131,24 @@
 .header_logo
 {
 	width: 100%;
+}
+
+.navbar
+{
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+ 
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a
+{
+	transition: 0.3s;
+}
+
+.navbar-default .navbar-nav > li > a:hover, 
+.navbar-default .navbar-nav > li > a:focus
+{
+	background-color: red;
+	transition: none;
 }
