@@ -89,22 +89,16 @@
 		public function updateUser() {
 			$nickname = $this->input->post('nickname');
 			$password = $this->input->post('newpassword');
+			$role = $this->input->post('role');
 			$data = array();
-			if ($nickname =='') {
-				$data = array(
-				'password' => $password
-				);
+			if ($nickname != '' && $nickname != null) {
+				$data["nickname"] = $nickname;
 			}
-			elseif ($password == '') {
-				$data = array(
-				'nickname' => $nickname
-				);
+			if ($password != '' && $password != null) {
+				$data["password"] = $password;
 			}
-			elseif (condition) {
-				$data = array(
-				'password' => $password,
-				'nickname' => $nickname
-				);
+			if ($role != '' && $role != null) {
+				$data["role"] = $role;
 			}
 			$this->db->where('email', $this->input->post('email'));
 			$query = $this->db->update('users', $data);
@@ -125,10 +119,12 @@
 		
 		public function getUserById($id) {
 			$this->db->where('id', $id);
-			$query = $this->db->query('SELECT id, nickname, email, role FROM users');
+			$query = $this->db->get('users');
+			var_dump($query);
 			if ($query->num_rows() == 1) {
 				$row = $query->row();
 				$data = array(
+					'id' => $row->id,
 					'email' => $row->email,
 					'nickname' => $row->nickname,
 					'role' => $row->role

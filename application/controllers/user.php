@@ -92,9 +92,9 @@
 				
 				$this->load->model('model_users');
 				$user = $this->model_users->getUserById($id);
-				$data['userInfo'] = 
+				$data['userInfo'] = $user;
 				
-				$data['text'] = 'Editing user: ' . $data['userInfo'];
+				$data['text'] = 'Editing user: ' . $user['email'];
 				if ($alert == 'success') {
 					$data['alert'] = 'Update was a success!';
 				}
@@ -104,7 +104,7 @@
 				$this->load->view('head.php', $data);
 				$this->load->view('header.php');
 				$this->load->view('menubar.php');
-				$this->load->view('profile.php');
+				$this->load->view('otherprofile.php');
 				$this->load->view('footer.php');
 				
 			}
@@ -235,6 +235,7 @@
 		}
 		
 		public function update_profile() {
+			$redirect = 'user/profile/success';
 			$this->load->library('form_validation');
 			$this->form_validation->set_error_delimiters('<div class="alert alert-dismissible alert-warning">', '</div>');
 			if (trim($this->input->post('password')) != '' || trim($this->input->post('oldpassword')) != '' || trim($this->input->post('cpassword') != '')) {
@@ -246,12 +247,16 @@
 			if (trim($this->input->post('nickname')) != '') {
 				$this->form_validation->set_rules('nickname', 'Nickname', 'required|trim|is_unique[users.nickname]');				
 			}
+
+			if (trim($this->input->post('id')) != null) {
+				$redirect = 'user/member/success/' . trim($this->input->post('id'));
+			}
 			
 			if ($this->form_validation->run()) {
 				$this->load->model('model_users');
 				if($this->model_users->updateUser()) {
 					$data['alert'] = 'Update successful!';
-				 	redirect('user/profile/success');
+				 	redirect($redirect);
 				}
 				else {
 					echo "Write to database failed";
