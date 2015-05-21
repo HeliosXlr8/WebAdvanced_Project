@@ -19,14 +19,17 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<?php
-	        		if (count($loginnav) > 1) {
+	        		if ($this->session->userdata('is_logged_in')) {
 						echo '<li class="dropdown navbar-right">';
 						echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">' . $identity . '<span class="caret"></span></a>';
 						echo '<ul class="dropdown-menu" role="menu">';
 						foreach ($adminnav as $key => $value) {
 							echo '<li><a href="' . site_url($value) . '">' . $key . '</a></li>';
 						}
-						echo '<li class="divider"></li>';
+						if (count($adminnav) > 0) {
+							echo '<li class="divider"></li>';
+						}
+
 						foreach ($loginnav as $key => $value) {
 							echo '<li><a href="' . site_url($value) . '">' . $key . '</a></li>';
 						}
