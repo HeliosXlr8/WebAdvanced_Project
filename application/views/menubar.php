@@ -17,6 +17,7 @@
 				?>
 				</li>
 			</ul>
+			
 			<ul class="nav navbar-nav navbar-right">
 				<?php
 	        		if ($this->session->userdata('is_logged_in')) {
