@@ -13,7 +13,7 @@
 			if ($this->session->userdata('is_logged_in')) {
 				if ($this->session->userdata('role') == trim('admin')){
 					$data['adminnav'] = array(
-						'Members' => 'site/members'
+						'Members' => 'user/members'
 					);
 				}
 				else {
@@ -21,14 +21,14 @@
 				}
 				$data['identity'] = $this->session->userdata('email');
 				$data['loginnav'] = array (
-					'Profile' => 'site/profile/user',
-					'Logout' => 'site/logout'
+					'Profile' => 'user/profile/user',
+					'Logout' => 'user/logout'
 				);
 			}
 			else {
 				$data['loginnav'] = array (
-					'Login' => 'site/login',
-					'Sign up' => 'site/register'
+					'Login' => 'user/login',
+					'Sign up' => 'user/register'
 				);
 			}
 						

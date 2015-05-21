@@ -116,6 +116,11 @@
 			}
 		}
 		
+		public function getAllUsers() {
+			$query = $this->db->get('users');
+			var_dump($query);
+			return $query;
+		}
 		
 	}
 ?>
