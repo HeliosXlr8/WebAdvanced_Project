@@ -27,7 +27,8 @@
 			}
 			else {
 				$data['loginnav'] = array (
-					'Login' => 'site/login'
+					'Login' => 'site/login',
+					'Sign up' => 'site/register'
 				);
 			}
 						

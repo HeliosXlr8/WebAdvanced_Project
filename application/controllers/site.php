@@ -11,6 +11,7 @@
 		 *	- or -
 		 * 		http://example.com/index.php/welcome/index
 		 *	- or -
+		 * !! hitaccess toegevoegd je kan index.php nu weglaten !!
 		 * Since this controller is set as the default controller in
 		 * config/routes.php, it's displayed at http://example.com/
 		 *
