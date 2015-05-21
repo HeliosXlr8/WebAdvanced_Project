@@ -8,7 +8,7 @@
 				'Info' => 'site/algemene_info',
 				'Events' => 'site/event_manager',
 				'Empty2' => '#',
-				'Empty3' => '#'
+				'About' => 'site/about'
 			);
 			if ($this->session->userdata('is_logged_in')) {
 				if ($this->session->userdata('role') == trim('admin')){

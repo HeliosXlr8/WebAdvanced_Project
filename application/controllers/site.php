@@ -276,6 +276,17 @@
 				redirect('site/profile/user');
 			}
 		}
+
+		public function about(){
+			$data = $this->model_staticdata->getData();	
+			$data['page_header'] = 'Algemene info';
+			
+			$this->load->view('head.php', $data);
+			$this->load->view('header.php');
+			$this->load->view('menubar.php');
+			$this->load->view('about.php');
+			$this->load->view('footer.php');
+		}
 		
 	}
 ?>
