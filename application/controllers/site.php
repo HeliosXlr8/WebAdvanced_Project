@@ -48,19 +48,20 @@
 			$this->load->view('footer.php');
 		}
 
-		public function event_manager()
+		public function events()
 		{
 			$this->load->model('model_events');
 			$data = $this->model_staticdata->getData();
 			$data['edata'] = $this->model_events->getData();
 			$data['page_header'] = 'Events';
 			
-			$data['text'] = 'Event manager';
+			$data['text'] = 'Upcoming events & Event manager (moet veranderd worden.. Event manager alleen voor admins)';
 			
 			$this->load->view('head.php', $data);
 			$this->load->view('header.php');
 			$this->load->view('menubar.php');
 			$this->load->view('page.php');
+			$this->load->view('upcoming_events.php');
 			$this->load->view('event_manager.php');
 			$this->load->view('footer.php');
 		}
