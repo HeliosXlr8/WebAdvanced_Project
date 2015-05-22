@@ -3,7 +3,10 @@
 	{	
 		public function getData()
 		{
-			$query = $this->db->get('events');
+			$this->db->select("*");
+			$this->db->from("events");
+			$this->db->order_by("date", "desc");
+			$query = $this->db->get();
 			
 			return $query->result();
 		}

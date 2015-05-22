@@ -6,11 +6,6 @@
 			array_push($dates, strtotime($edata[$i]->date));
 		}
 
-		var_dump($dates);
-		//$keys = array_keys(asort($dates));
-		asort($dates);
-		var_dump($dates);
-
 		for ($i=0; $i<count($dates); $i++)
 		{
 			$date = $dates[$i];
