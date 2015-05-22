@@ -127,6 +127,7 @@
 	?>
 
 	<script>
+		userRole = <?php echo '"'.$userRole.'"' ?>;
 		data = <?php echo json_encode($edata) ?>;
 		month = <?php echo (int)date('m') ?>;
 		day = <?php echo (int)date('d') ?>;
@@ -193,8 +194,13 @@
 							+"<li><span class='param'>location: </span>"
 								+linkToGM(filterOnNull(data[j].location))+"</li>"
 							+"</ul>";
-						desc += "<button action='remove_event'>remove</button>"+ 
-							"&nbsp;<button action='edit_event'>edit</button></div>";
+						
+						if (userRole == "admin")
+						{
+							desc += "<button action='remove_event'>remove</button>"+ 
+							"&nbsp;<button action='edit_event'>edit</button>";
+						}
+						desc += "</div>";
 						
 						buffer += desc;
 					}
