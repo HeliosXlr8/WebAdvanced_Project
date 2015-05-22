@@ -20,6 +20,13 @@
 		?>
 			<a href="<?php echo base_url()."user/register"?>" class="btn btn-primary">Sign up!</a>
 			<div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
+			<span id="signinButton"> <span
+			class="g-signin"
+			data-callback="signinCallback"
+			data-clientid="982979263444-siasqbk6rgn9db4vuvr6etfbi53fc51e.apps.googleusercontent.com"
+			data-cookiepolicy="single_host_origin"
+			data-requestvisibleactions="http://schema.org/AddAction"
+			data-scope="https://www.googleapis.com/auth/plus.login"> </span> </span>
 		<?php
 			echo "</p>";
 			
