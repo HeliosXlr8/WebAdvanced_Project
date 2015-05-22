@@ -69,6 +69,29 @@ class Forum extends CI_Controller {
         $this->load->view('footer.php');
     }
 
+    //input krijgen van de view, dit doorsturen naar model_forum --> insertComment
+    //zorgen voor validatie van form (input moet ingevuld zijn + captcha moet goed zijn
+    public function comment_validation($id) {
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_error_delimiters('<div class="alert alert-dismissible alert-warning">', '</div>');
+
+        $this->form_validation->set_rules('username', 'Username', 'required|trim');
+        $this->form_validation->set_rules('comment', 'Insert text..', 'required|trim|min_length[1]');
+
+        if ($this->form_validation->run()) {
+            $this->load->model('model_forum');
+            if ($this->model_users->insertComment()) {
+                $data['alert'] = 'Update successful!';
+                redirect($redirect);
+            } else {
+                echo "Write to database failed";
+            }
+        } else {
+            redirect('user/profile/user');
+        }
+    }
+
 }
 
 ?>

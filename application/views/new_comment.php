@@ -10,40 +10,55 @@
     }
 </script>
 
-<form class="form-horizontal" action="#" method="post">
-    <fieldset>
-        <legend>You're about to post a comment.</legend>
-        <div class="form-group">
-            <label for="inputEmail" class="col-lg-2 control-label">Name</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="inputUserName" placeholder="Name">
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label for="textArea" class="col-lg-2 control-label">Message</label>
-            <div class="col-lg-10">
-                <textarea class="form-control" rows="3" id="textArea"></textarea>
-                <span class="help-block">Reply to this thread.</span>
+<?php
+$data = array('class' => 'form-horizontal');
+echo form_open("forum/comment_validation/$threadPost->thread_id", $data);
 
-                <p>
-                    Answer this math test so we can determine wether you're human or not.
-                </p>
-                <?php
-                $random1 = rand(1, 5);
-                $random2 = rand(1, 5);
+echo "<fieldset>
+        <legend>You're about to post a comment.</legend>";
 
-                echo "<p> What is " . $random1 . " + " . $random2 . "?";
-                ?>
-                <input id="uitkomst" type="number"  />
-                <span style='color:red;' id='errorbar'> </span> 
-                <?php
-                echo "</p>";
-                echo "<input type='button' value='Reply!' class='btn btn-primary' name='submitBtn' onclick='valideer(" . $random1 . "," . $random2 . ")' />"
-                ?>
+echo "<div class='form-group'>";
+echo "<label for='inputName' class='col-lg-2 control-label'>Name</label>";
+echo "<div class='col-lg-10'>";
+$data = array('class' => 'form-control', 'name' => 'username', 'placeholder' => 'Username', 'value' => set_value('Username'));
+echo "<p>";
+echo form_input($data);
+echo "</p>";
+echo "</div>";
+echo "</div>";
 
-                
-            </div>
-        </div>
-    </fieldset>
-</form>
+echo "<div class='form-group'>";
+echo "<label for='inputName' class='col-lg-2 control-label'>Message</label>";
+echo "<div class='col-lg-10'>";
+$data = array('class' => 'form-control', 'name' => 'comment', 'placeholder' => 'Insert text..');
+echo "<p>";
+echo form_textArea($data);
+echo "</p>";
+
+echo "<p>Answer this math test so we can determine wether you're human or not.</p>";
+$random1 = rand(1, 5);
+$random2 = rand(1, 5);
+
+echo "<p> What is " . $random1 . " + " . $random2 . "?";
+
+echo "<input id='uitkomst' type='number'  />
+                <span style='color:red;' id='errorbar'> </span> ";
+
+
+$data = array('class' => 'btn btn-primary', 'name' => 'comment_submit', 'onclick' => 'valideer(' . $random1 . ',' . $random2 . ')', 'value' => 'Reply!');
+echo "<p>";
+echo form_submit($data);
+echo "</p>";
+
+echo "</fieldset>";
+echo form_close();
+echo "</div>";
+echo "</div>";
+?>
+
+<div class="col-sm-6">
+    <?php
+    echo validation_errors();
+    ?>
+</div>

@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 
-<?php 
+<?php
 //ik wou hier doen, op ELKE thread een comment button behalve op de eerste (FAQ staat vast op 1)
 $URL = "";
-if ($threadPost->thread_id != 1) 
+if ($threadPost->thread_id != 1) {
     $URL = base_url() . "forum/New_Comment/" . $threadPost->thread_id;
     echo "<a href='$URL' class='btn btn-primary' id='rightBtn'>Comment</a>";
+}
 ?>
 
 <table class="table table-striped table-hover " id="forumTable">
@@ -18,10 +19,9 @@ if ($threadPost->thread_id != 1)
     </thead>
     <tbody>
         <?php
-
         $result = count($comments);
         for ($j = 0; $j < $result; $j++) {
-            
+
             echo "<tr class='active'>"
             . "<td colspan='1' width='15%'> <br><br> Posted by: " . $comments[$j]->postedBy . "</td>"
             . "<td colspan='4'> <br><br>" . $comments[$j]->comment . "</td>"
@@ -33,7 +33,7 @@ if ($threadPost->thread_id != 1)
 </table> 
 
 <script>
-    $(function() {
+    $(function () {
         $("#accordion").accordion({
             heightStyle: "content"
         });
