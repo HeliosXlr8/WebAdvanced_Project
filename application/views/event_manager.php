@@ -178,7 +178,6 @@
 				var buffer = "";
 				summary.innerHTML = "nothing special";
 				
-				var counter=0;
 				for (var j=0; j<data.length; j++)
 				{
 					
@@ -187,21 +186,17 @@
 					{
 						var desc = "";
 
-						if (counter>0)
-						{
-							desc+="<div class='end_line'></div>";
-						}
-
-						desc += "<ul class='desc_list'>"
+						desc += "<div class='event_item'><ul class='desc_list'>"
 							+"<li><span class='param'>name: </span>"+data[j].name+"</li>"
 							+"<li><span class='param'>time: </span>"+getReadableTime(dates[j])+"</li>"
 							+"<li><span class='param'>description: </span>"+filterOnNull(data[j].description)+"</li>"
 							+"<li><span class='param'>location: </span>"
 								+linkToGM(filterOnNull(data[j].location))+"</li>"
 							+"</ul>";
+						desc += "<button action='remove_event'>remove</button>"+ 
+							"&nbsp;<button action='edit_event'>edit</button></div>";
 						
 						buffer += desc;
-						counter++;
 					}
 				}
 

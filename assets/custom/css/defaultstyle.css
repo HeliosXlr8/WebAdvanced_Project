@@ -9,6 +9,11 @@
 	font-size: 12pt;
 }
 
+.event_manager button
+{
+	font-size: 10pt;
+}
+
 .calendar table
 {
 	border-collapse: collapse;
@@ -73,6 +78,15 @@
 {
 	border: 3px solid #FF2B06;
 	font-weight: bolder;
+}
+
+.event_item
+{
+	border: 2px solid #DDDDDD;
+	background-color: #F5F5F5;
+	border-radius: 5px;
+	margin-bottom: 7px;
+	padding: 3px;
 }
 
 .event_summary
