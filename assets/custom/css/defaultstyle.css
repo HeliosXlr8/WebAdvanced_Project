@@ -134,6 +134,7 @@
 	margin-bottom: 10px;
 	font-size: 12pt;
 	padding: 5px;
+	background-color: #F5F5F5;
 }
 
 .upcoming_events table
@@ -159,9 +160,18 @@
 	vertical-align: top;
 }
 
+.upcoming_events_item
+{
+	border: 2px solid #DDDDDD;
+	border-radius: 5px;
+	background-color: white;
+	margin-bottom: 5px;
+}
+
 .upcoming_events_title
 {
 	margin-bottom: 3px;
+	margin-left: 5px;
 	font-weight: bold;
 }
 
