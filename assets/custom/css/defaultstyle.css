@@ -32,6 +32,12 @@
 	text-align: center;
 }
 
+.calendar .day:hover
+{
+	text-decoration: underline;
+	color: blue;
+}
+
 .calendar .calendarTitle
 {
 	text-align: center;
@@ -178,11 +184,11 @@
 .end_line
 {
 	border-bottom: 1px solid black;
-	width: 20%;
+	width: 90%;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .header_logo

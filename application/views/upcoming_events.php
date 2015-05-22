@@ -14,9 +14,18 @@
 			echo "<p class='upcoming_events_title'>".$edata[$i]->name."</p>";
 			echo "<table><tr>";
 			echo "<td>".date('d-m-Y', $date)."<br/>".date('H:i', $date)."</td>";
-			echo "<td>".$edata[$i]->description."</td>";
+			echo "<td>".filterOnNull($edata[$i]->description)."</td>";
 			echo "</tr></table>";
 			echo "</div>";
+		}
+
+		function filterOnNull($string)
+		{
+			if ($string == "")
+			{
+				return "<i>no description</i>";
+			}
+			return $string;
 		}
 	?>
 </div>

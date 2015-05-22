@@ -6,7 +6,7 @@
 			$data['navigation'] = array(
 				'Home' => 'site',
 				'Info' => 'site/algemene_info',
-				'Events' => 'site/events',
+				'Events' => 'events/events_overview',
 				'Forum' => 'forum/forum_overview',
 				'About' => 'site/about'
 			);
