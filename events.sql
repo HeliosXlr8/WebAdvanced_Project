@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS `events` (
 INSERT INTO `events` (`id`, `date`, `name`, `description`, `location`) VALUES
 (1, '2015-06-01 08:30:00', 'Begin examens', 'deze event heeft niet veel beschrijving nodig, kijk gewoon naar de titel', 'PXL Hogeschool Hasselt'),
 (2, '2015-05-22 12:00:00', 'Een event (leeg)', NULL, NULL),
-(3, '2015-05-20 08:30:00', 'Random event', 'beschrijving van deze random event', 'locatie van deze random event'),
+(3, '2015-05-20 08:30:00', 'Random event', 'beschrijving van deze random event', 'Kapermolen'),
 (4, '2015-06-17 13:30:00', 'Einde examens', 'Deze dag is het laatste examen', 'PXL Hogeschool Hasselt'),
-(5, '2015-06-17 14:00:00', 'Begin feesten', 'Hopelijk vielen de examens genoeg mee om te kunnen feesten', 'Maakt niet uit'),
+(5, '2015-06-17 14:00:00', 'Begin feesten', 'Hopelijk vielen de examens genoeg mee om te kunnen feesten', 'Hasselt'),
 (6, '2015-05-10 00:00:00', 'Randy''s verjaardag', NULL, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -12,7 +12,7 @@
 			$data['udata'] = $this->model_users->getCurentUserInfo();
 			$data['page_header'] = 'Events';
 			
-			$data['text'] = 'Event manager & Upcoming events (moet veranderd worden.. opsplitsing in events-dropdown?)';
+			$data['text'] = 'Hier zijn de Event Manager & Upcoming Events';
 			
 			$this->load->view('head.php', $data);
 			$this->load->view('header.php');

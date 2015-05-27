@@ -172,6 +172,7 @@
 {
 	border-right: 1px solid black;
 	text-align: center;
+	min-width: 100px;
 }
 
 .upcoming_events td:nth-child(2)

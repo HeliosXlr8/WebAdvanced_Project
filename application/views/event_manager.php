@@ -1,10 +1,6 @@
 <div class="event_manager">
 	<?php
-		$userRole;
-		if ($udata != false)
-		{
-			$userRole = $udata['role'];
-		}
+		$GLOBALS['userRole'] = $udata['role'];
 
 		$daynames = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
 		$monthnames = array('January', 'February', 'March', 'April', 'May', 
@@ -115,7 +111,6 @@
 
 		echo "<td class='event_summary_desc'>";
 		echo "<div class='event_summary_desc_div'>";
-		echo "nothing special";
 		echo "</div>";
 		echo "</td>";
 
@@ -127,7 +122,7 @@
 	?>
 
 	<script>
-		userRole = <?php echo '"'.$userRole.'"' ?>;
+		userRole = <?php echo '"'.$GLOBALS['userRole'].'"' ?>;
 		data = <?php echo json_encode($edata) ?>;
 		month = <?php echo (int)date('m') ?>;
 		day = <?php echo (int)date('d') ?>;
@@ -172,16 +167,17 @@
 
 		function update_event_desc(day, month)
 		{
-			
+			var addBtn = "<button action='add_event'>add event</button>";
 			for (var i=0; i<summary_descs.length; i++)
 			{
 				var summary = summary_descs[i];
 				var buffer = "";
-				summary.innerHTML = "nothing special";
+				
+				if (userRole != "admin")
+					summary.innerHTML = "nothing special";
 				
 				for (var j=0; j<data.length; j++)
-				{
-					
+				{	
 					if (month==dates[j].getMonth()+1 &&
 						day==dates[j].getDate())
 					{
@@ -205,10 +201,12 @@
 						buffer += desc;
 					}
 				}
-
-				if (buffer.length > 0)
-					summary.innerHTML = buffer;
 			}
+
+			if (userRole != "admin")
+				summary.innerHTML = buffer;
+			else
+				summary.innerHTML = buffer + addBtn;
 		}
 
 		function linkToGM(str)
