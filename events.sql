@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2015 at 11:32 AM
+-- Generation Time: May 28, 2015 at 12:01 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -33,19 +33,20 @@ CREATE TABLE IF NOT EXISTS `events` (
   `description` varchar(4095) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `events`
 --
 
 INSERT INTO `events` (`id`, `date`, `name`, `description`, `location`) VALUES
-(1, '2015-06-01 08:30:00', 'Begin examens', 'deze event heeft niet veel beschrijving nodig, kijk gewoon naar de titel', 'PXL Hogeschool Hasselt'),
+(1, '2015-06-01 08:30:00', 'Begin examens', 'Deze event heeft niet veel beschrijving nodig, kijk gewoon naar de titel. Maar sindsdien dit toch als een voorbeeld dient, zal ik hier een ietwat langere tekst van maken om te zien hoe het eruit gaat zien op de Upcoming Events element.', 'PXL Hogeschool Hasselt'),
 (2, '2015-05-22 12:00:00', 'Een event (leeg)', NULL, NULL),
 (3, '2015-05-20 08:30:00', 'Random event', 'beschrijving van deze random event', 'Kapermolen'),
 (4, '2015-06-17 13:30:00', 'Einde examens', 'Deze dag is het laatste examen', 'PXL Hogeschool Hasselt'),
 (5, '2015-06-17 14:00:00', 'Begin feesten', 'Hopelijk vielen de examens genoeg mee om te kunnen feesten', 'Hasselt'),
-(6, '2015-05-10 00:00:00', 'Randy''s verjaardag', NULL, NULL);
+(6, '2015-05-10 00:00:00', 'Randy''s verjaardag', NULL, NULL),
+(17, '2015-05-28 11:30:00', 'Testke', NULL, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

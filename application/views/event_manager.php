@@ -71,10 +71,10 @@
 							{
 								if (date('m') == $month && date('d') == $day)
 								{
-									echo "<td class='day daymarked today'>".$day."</td>";
+									echo "<td class='day daymarked today' id=".$edata[$k]->id.">".$day."</td>";
 								}
 								else
-									echo "<td class='day daymarked'>".$day."</td>";
+									echo "<td class='day daymarked' id=".$edata[$k]->id.">".$day."</td>";
 								
 								$daymarked = true;
 								$markedday = $day;
@@ -133,6 +133,12 @@
 		summary_titles = document.getElementsByClassName("event_summary_title");
 		summary_descs = document.getElementsByClassName("event_summary_desc_div");
 		
+		addBtn = '<form method="post" action="<?php echo site_url("events/add_event") ?>">' +
+				"<input type='submit' value='add event'></button>" +
+			"</form>";
+		editBtn = undefined;
+		removeBtn = undefined;
+
 		update_event_title(day, month);
 		fill_dates();
 		bind_days();
@@ -167,7 +173,6 @@
 
 		function update_event_desc(day, month)
 		{
-			var addBtn = "<button action='add_event'>add event</button>";
 			for (var i=0; i<summary_descs.length; i++)
 			{
 				var summary = summary_descs[i];
@@ -193,8 +198,16 @@
 						
 						if (userRole == "admin")
 						{
-							desc += "<button action='remove_event'>remove</button>"+ 
-							"&nbsp;<button action='edit_event'>edit</button>";
+							
+							editBtn = '<form method="post" action="<?php echo site_url("events/edit_event") ?>">' +
+									"<input type='submit' value='edit'></button>" +
+								"</form>";
+							removeBtn = '<form method="post" action="<?php echo site_url("events/remove_event") ?>">' +
+									"<input type='hidden' name='id' value='"+data[j].id+"'/>" +
+									"<input type='submit' value='remove'></button>" +
+								"</form>";
+
+							desc += editBtn+"&nbsp;"+removeBtn;
 						}
 						desc += "</div>";
 						
