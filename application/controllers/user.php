@@ -247,9 +247,10 @@
 			if (trim($this->input->post('nickname')) != '') {
 				$this->form_validation->set_rules('nickname', 'Nickname', 'required|trim|is_unique[users.nickname]');				
 			}
-
-			if (trim($this->input->post('id')) != null) {
+			echo "ID!!: " .trim($this->input->post('id'));
+			if (trim($this->input->post('id')) != '') {
 				$redirect = 'user/member/success/' . trim($this->input->post('id'));
+				$this->form_validation->set_rules('role', 'Role', 'required|trim');
 			}
 			
 			if ($this->form_validation->run()) {
@@ -263,7 +264,7 @@
 				}
 			}
 			else {
-				redirect('user/profile/user');
+				redirect($redirect);
 			}
 		}
 	}

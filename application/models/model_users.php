@@ -120,7 +120,6 @@
 		public function getUserById($id) {
 			$this->db->where('id', $id);
 			$query = $this->db->get('users');
-			var_dump($query);
 			if ($query->num_rows() == 1) {
 				$row = $query->row();
 				$data = array(
