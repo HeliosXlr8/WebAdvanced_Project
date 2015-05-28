@@ -36,10 +36,10 @@
 		<input type="submit" value="add" class="btn btn-default"></input>
 		<input type="reset" value="reset" class="btn btn-default"></input>
 	</form>
-
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('#datetimepicker1').datetimepicker();
+			$('#datetimepicker1').val("<?php echo $date ?>");
 		});
 	</script>
 </div>

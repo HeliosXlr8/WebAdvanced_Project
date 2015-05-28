@@ -26,6 +26,7 @@
 		public function add_event()
 		{
 			$pdata = $this->input->post();
+			var_dump($pdata);
 
 			$this->load->model('model_events');
 			$data = $this->model_staticdata->getData();
@@ -37,7 +38,7 @@
 			$this->load->view('header.php');
 			$this->load->view('menubar.php');
 			$this->load->view('page.php');
-			$this->load->view('add_event.php');
+			$this->load->view('add_event.php', $pdata);
 			$this->load->view('footer.php');
 
 			if (!empty($pdata))

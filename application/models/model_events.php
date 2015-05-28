@@ -26,5 +26,10 @@
 			$this->db->where('id', $eventData['id']);
 			$this->db->delete('events');
 		}
+
+		public function editEvent($eventData)
+		{
+			
+		}
 	}
 ?>

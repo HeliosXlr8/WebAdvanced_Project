@@ -133,9 +133,7 @@
 		summary_titles = document.getElementsByClassName("event_summary_title");
 		summary_descs = document.getElementsByClassName("event_summary_desc_div");
 		
-		addBtn = '<form method="post" action="<?php echo site_url("events/add_event") ?>">' +
-				"<input type='submit' value='add event'></button>" +
-			"</form>";
+		addBtn = undefined;
 		editBtn = undefined;
 		removeBtn = undefined;
 
@@ -183,6 +181,14 @@
 				
 				for (var j=0; j<data.length; j++)
 				{	
+					if (userRole == "admin")
+					{
+						addBtn = '<form method="post" action="<?php echo site_url("events/add_event") ?>">' +
+								"<input type='hidden' name='date' value='"+data[j].date+"'></button>" +
+								"<input type='submit' value='add event'></button>" +
+							"</form>";
+					}
+
 					if (month==dates[j].getMonth()+1 &&
 						day==dates[j].getDate())
 					{
@@ -198,7 +204,6 @@
 						
 						if (userRole == "admin")
 						{
-							
 							editBtn = '<form method="post" action="<?php echo site_url("events/edit_event") ?>">' +
 									"<input type='submit' value='edit'></button>" +
 								"</form>";
@@ -217,7 +222,7 @@
 			}
 
 			if (userRole != "admin")
-				summary.innerHTML = buffer;
+				summary.innerHTML = buffer || "nothing special";
 			else
 				summary.innerHTML = buffer + addBtn;
 		}
