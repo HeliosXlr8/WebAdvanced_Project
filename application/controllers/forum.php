@@ -72,6 +72,7 @@ class Forum extends CI_Controller {
     //input krijgen van de view, dit doorsturen naar model_forum --> insertComment
     //zorgen voor validatie van form (input moet ingevuld zijn + captcha moet goed zijn
     public function comment_validation($id) {
+        $this->load->helper('form');
         $this->load->library('form_validation');
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-dismissible alert-warning">', '</div>');
@@ -79,11 +80,14 @@ class Forum extends CI_Controller {
         $this->form_validation->set_rules('username', 'Username', 'required|trim');
         $this->form_validation->set_rules('comment', 'Insert text..', 'required|trim|min_length[1]');
 
+        $formName = $this->input->post('username');
+        $formComment = $this->input->post('comment');
+        
         if ($this->form_validation->run()) {
             $this->load->model('model_forum');
-            if ($this->model_users->insertComment()) {
+            if ($this->model_forum->insertComment($id,$formComment,$formName)) {
                 $data['alert'] = 'Update successful!';
-                redirect($redirect);
+                redirect('forum/thread/' . $id);
             } else {
                 echo "Write to database failed";
             }

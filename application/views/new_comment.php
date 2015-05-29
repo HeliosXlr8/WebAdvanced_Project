@@ -1,3 +1,4 @@
+<!--
 <script>
     function valideer(nummer1, nummer2) { // makkelijke captcha (gewoon som maken)
         var code = document.getElementById('uitkomst').value;
@@ -9,7 +10,7 @@
         }
     }
 </script>
-
+-->
 
 <?php
 $data = array('class' => 'form-horizontal');
@@ -21,7 +22,7 @@ echo "<fieldset>
 echo "<div class='form-group'>";
 echo "<label for='inputName' class='col-lg-2 control-label'>Name</label>";
 echo "<div class='col-lg-10'>";
-$data = array('class' => 'form-control', 'name' => 'username', 'placeholder' => 'Username', 'value' => set_value('Username'));
+$data = array('class' => 'form-control', 'name' => 'username', 'placeholder' => 'username', 'value' => set_value('username'));
 echo "<p>";
 echo form_input($data);
 echo "</p>";
@@ -52,7 +53,7 @@ echo form_submit($data);
 echo "</p>";
 
 echo "</fieldset>";
-echo form_close();
+echo form_close($data);
 echo "</div>";
 echo "</div>";
 ?>
